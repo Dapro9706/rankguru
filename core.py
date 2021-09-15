@@ -76,8 +76,16 @@ class RG:
         if self.protocol == JSON_PROTOCOL:
             r = r['PAYLOAD']
 
-        if not r['DATA']:
+        if 'STATUS' in r.keys():
             raise TBidError
 
-        r = r['DATA']
-        return r
+        keys = [i for i in [*r.keys ()]]
+        keys.reverse ()
+
+        ret = {}
+        for i in keys:
+            test = r[i]
+
+            ret[test['testName']] = test['questionPaperId']
+
+        return ret
