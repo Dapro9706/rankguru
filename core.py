@@ -30,7 +30,7 @@ class RG:
 
         self.protocol = protocol
         self.NOVA_SERVICE_URL = f'https://rest.rankguru.com/'
-        self.TESTS = f'tests?textbook={PLACE_HOLDER}'
+        self.TESTS_URL = f'tests?textbook={PLACE_HOLDER}'
 
         self.API_URL = 'https://api.rankguru.com/graphql'
         self.ANS_QUERY = '{ QuestionEvaluation(input: {questionPaperId: "' + PLACE_HOLDER + '" })' \
@@ -44,14 +44,13 @@ class RG:
 
         r = r['data']['QuestionEvaluation']
 
-        if r:
-            r = r['evaluatedData']
-            ret = {}
-            for i in r:
-                ret[int (i['questionNo'])] = " ".join ([chr (ord (i) + 48) for i in i['key']])
-            return ret
-        else:
+        if not r:
             raise QPidError
+        r = r['evaluatedData']
+        ret = {}
+        for i in r:
+            ret[int (i['questionNo'])] = " ".join ([chr (ord (i) + 48) for i in i['key']])
+        return ret
 
     @hand
     def get_ans_raw(self, QUESTION_PAPER_ID):
@@ -61,3 +60,24 @@ class RG:
             raise AuthError
         else:
             return r.json ()
+
+    @hand
+    def get_tests_raw(self, TEXT_BOOK_ID):
+        r = make_get_request (self.HEADER, self.NOVA_SERVICE_URL + com (self.TESTS_URL, TEXT_BOOK_ID))
+        if r.status_code == 401:
+            raise AuthError
+        else:
+            return r.json ()
+
+    @hand
+    def get_tests(self, TEXT_BOOK_ID):
+        r = self.get_tests_raw (TEXT_BOOK_ID)
+
+        if self.protocol == JSON_PROTOCOL:
+            r = r['PAYLOAD']
+
+        if not r['DATA']:
+            raise TBidError
+
+        r = r['DATA']
+        return r
