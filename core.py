@@ -8,7 +8,7 @@ def hand(func):
         if self.protocol == JSON_PROTOCOL:
             try:
                 r = func (self, *args, **kwargs)
-                return r
+                return {'STATUS':'SUCESS','PAYLOAD':r}
             except Exception as e:
                 return {
                     'STATUS': 'ERROR',
@@ -17,7 +17,7 @@ def hand(func):
                     'LOCATION': func.__name__
                 }
         else:
-            func (self, *args, **kwargs)
+            return func (self, *args, **kwargs)
 
     return inner
 
@@ -37,5 +37,18 @@ class RG:
 
     @hand
     def get_ans(self, QUESTION_PAPER_ID):
-        return make_post_request(self.HEADER,self.API_URL,com(self.ANS_QUERY,QUESTION_PAPER_ID))
+        r = self.get_ans_raw(QUESTION_PAPER_ID)['data']['QuestionEvaluation']['evaluatedData']
+
+        ret = {}
+        for i in r:
+            ret[int(i['questionNo'])] = " ".join([chr(ord(i)+48) for i in i['key']])
+        return ret
+
+
+    def get_ans_raw(self, QUESTION_PAPER_ID):
+        r = make_post_request (self.HEADER, self.API_URL, com (self.ANS_QUERY, QUESTION_PAPER_ID))
+        if r.status_code == 401:
+            raise AuthError
+        else:
+            return r.json()
 
