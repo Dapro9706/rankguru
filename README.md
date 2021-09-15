@@ -6,3 +6,7 @@ API wrapper for retrieving Test Data from
 ### https://www.rankguru.com/
 
 For SCTS students
+
+## Installation
+### Install using:
+`pip install rankguru`
