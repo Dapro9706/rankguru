@@ -1,5 +1,8 @@
 # rankguru
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
 
-test stuff don't mind 
-      -Redslayer112
+
+API wrapper for retrieving Test Data from
+### https://www.rankguru.com/
+
+For SCTS students
