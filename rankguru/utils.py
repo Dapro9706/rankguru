@@ -1,5 +1,24 @@
 import requests
-from .globals import PLACE_HOLDER
+from .globals import PLACE_HOLDER, JSON_PROTOCOL
+
+
+def handle_protocol(func):
+    def inner(self, *args, **kwargs):
+        if self.protocol == JSON_PROTOCOL:
+            try:
+                r = func (self, *args, **kwargs)
+                return {'STATUS': 'SUCESS', 'PAYLOAD': r}
+            except Exception as e:
+                return {
+                    'STATUS': 'ERROR',
+                    'ERROR': type (e).__name__,
+                    'MESSAGE': str (e),
+                    'LOCATION': func.__name__
+                }
+        else:
+            return func (self, *args, **kwargs)
+
+    return inner
 
 
 def make_get_request(header, url, query=None):

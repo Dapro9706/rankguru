@@ -1,5 +1,4 @@
 from rankguru import RG, JSON_PROTOCOL
-from rankguru.utils import verify_header
 import json
 
 with open ('header.json') as f:
