@@ -1,4 +1,10 @@
 RG
 ===
 
-RG GO BRRRRRRRRRRRRR
+.. automodule:: rankguru
+
+Classes
+--------
+
+.. autoclass:: RG
+    .. rubric:: Methods

@@ -4,7 +4,27 @@ from .globals import PLAIN_PY_PROTOCOL, JSON_PROTOCOL, PLACE_HOLDER
 
 
 class RG:
+    """
+    The main API interface for the module
+    """
     def __init__(self, header: dict, protocol=PLAIN_PY_PROTOCOL):
+        """
+        Creates new RG object, raises `AuthError` if header is invalid
+        :Parameters:
+            `header` : dict
+                Auth header obtained from rankguru [Required Argument]
+            `protocol` : int
+                The error and return handling protocol of the module 
+
+                ``rankguru.globals.PLAIN_PY_PROTOCOL`` (or 0): Raises errors and gives normal returns
+                ``rankguru.globals.JSON_PROTOCOL`` (or 1): returns {'STATUS':'SUCCESS' or 'ERROR', 'PAYLOAD': return value}
+
+                .. note::
+
+                    DO NOT debug with ``JSON_PROTOCOL`` it will make your life hell
+        """
+
+
         self.HEADER = header
         if not verify_header (self.HEADER):
             raise AuthError ()
