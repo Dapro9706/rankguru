@@ -1,8 +1,8 @@
 RG
-===
+=============
 
 Classes
 --------
 
-.. autoclass:: core.RG
+.. autoclass:: rankguru.core.RG
    :members:
