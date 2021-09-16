@@ -1,10 +1,10 @@
 RG
 ===
 
-.. automodule:: rankguru
+.. automodule:: rankguru.core
 
 Classes
 --------
 
 .. autoclass:: RG
-    .. rubric:: Methods
+   .. rubric:: Methods
