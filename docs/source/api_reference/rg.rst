@@ -7,7 +7,6 @@ Classes
 --------
 
 .. autoclass:: RG
-
    :show-inheritance:
-   
+
    .. rubric:: Methods
