@@ -12,9 +12,15 @@ For SCTS students
 `pip install rankguru`  
 **Or if you are not comfortable using github :**
 - Download the zip by clicking on code, and selecting 'Download ZIP' and then extract the zip or open your command line and clone this repo by typing `git clone https://github.com/SwaminathShiju/rankguru.git`
+
+![Image for download.zip option](https://github.com/SwaminathShiju/rankguru/blob/master/markdown%20images/Download_zip.png?raw=true)
+
 - Cut the extracted folder or cloned repo
 - Go to the install location of Python on your machine
 - open 'Lib' folder
+
+![Image for Lib directory inside python](https://github.com/SwaminathShiju/rankguru/blob/master/markdown%20images/Lib-directory.png?raw=true)
+
 - paste the folder
 
 ### Update using:
