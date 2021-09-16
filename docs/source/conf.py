@@ -17,7 +17,10 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-    'sphinx_automodapi.automodapi'
+    'ext.docstrings',
+    'sphinx.ext.inheritance_diagram', 
+    'sphinx.ext.todo',
+    'sphinx.ext.napoleon'
 ]
 
 intersphinx_mapping = {
