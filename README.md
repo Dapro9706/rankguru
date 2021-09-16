@@ -21,5 +21,9 @@ For SCTS students
   **OR**  
   `sudo pip3 install rankguru --upgrade`
 
+#### If you get an error, you might need to install requests library you can do this by:
+- Opening your command line
+- Then type `pip install requests`
+
 ## Documentation :
 https://rankguru.readthedocs.io/
