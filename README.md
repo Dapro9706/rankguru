@@ -19,3 +19,6 @@ For SCTS students
   `sudo pip install rankguru --upgrade` 
   **OR**
   `sudo pip3 install rankguru --upgrade`
+
+## Documentation :
+https://rankguru.readthedocs.io/
