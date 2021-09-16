@@ -17,7 +17,7 @@ extensions = [
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-    'ext.docstrings',
+    'sphinx.ext.docstrings',
     'sphinx.ext.inheritance_diagram', 
     'sphinx.ext.todo',
     'sphinx.ext.napoleon'
