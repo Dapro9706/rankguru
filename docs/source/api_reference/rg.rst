@@ -1,13 +1,10 @@
 RG
 ===
 
-.. automodule:: rankguru.core
-   :members:
-
 Classes
 --------
 
-.. autoclass:: RG
+.. autoclass:: rankguru.RG
    :show-inheritance:
 
    .. rubric:: Methods
