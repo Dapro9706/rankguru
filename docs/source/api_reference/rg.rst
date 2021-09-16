@@ -2,6 +2,7 @@ RG
 ===
 
 .. automodule:: rankguru
+   :members:
 
 Classes
 --------
