@@ -3,25 +3,6 @@ from .utils import *
 from .globals import PLAIN_PY_PROTOCOL, JSON_PROTOCOL, PLACE_HOLDER
 
 
-def hand(func):
-    def inner(self, *args, **kwargs):
-        if self.protocol == JSON_PROTOCOL:
-            try:
-                r = func (self, *args, **kwargs)
-                return {'STATUS': 'SUCESS', 'PAYLOAD': r}
-            except Exception as e:
-                return {
-                    'STATUS': 'ERROR',
-                    'ERROR': type (e).__name__,
-                    'MESSAGE': str (e),
-                    'LOCATION': func.__name__
-                }
-        else:
-            return func (self, *args, **kwargs)
-
-    return inner
-
-
 class RG:
     def __init__(self, header: dict, protocol=PLAIN_PY_PROTOCOL):
         self.HEADER = header
@@ -36,7 +17,7 @@ class RG:
         self.ANS_QUERY = '{ QuestionEvaluation(input: {questionPaperId: "' + PLACE_HOLDER + '" })' \
                                                                                             ' { evaluatedData { questionNo  key }  } }'
 
-    @hand
+    @handle_protocol
     def get_ans(self, QUESTION_PAPER_ID):
         r = self.get_ans_raw (QUESTION_PAPER_ID)
         if self.protocol == JSON_PROTOCOL:
@@ -52,7 +33,7 @@ class RG:
             ret[int (i['questionNo'])] = " ".join ([chr (ord (i) + 48) for i in i['key']])
         return ret
 
-    @hand
+    @handle_protocol
     def get_ans_raw(self, QUESTION_PAPER_ID):
         r = make_post_request (self.HEADER, self.API_URL, com (self.ANS_QUERY, QUESTION_PAPER_ID))
 
@@ -61,7 +42,7 @@ class RG:
         else:
             return r.json ()
 
-    @hand
+    @handle_protocol
     def get_tests_raw(self, TEXT_BOOK_ID):
         r = make_get_request (self.HEADER, self.NOVA_SERVICE_URL + com (self.TESTS_URL, TEXT_BOOK_ID))
         if r.status_code == 401:
@@ -69,14 +50,14 @@ class RG:
         else:
             return r.json ()
 
-    @hand
+    @handle_protocol
     def get_tests(self, TEXT_BOOK_ID):
         r = self.get_tests_raw (TEXT_BOOK_ID)
 
         if self.protocol == JSON_PROTOCOL:
             r = r['PAYLOAD']
 
-        if 'STATUS' in r.keys():
+        if 'STATUS' in r.keys ():
             raise TBidError
 
         keys = [i for i in [*r.keys ()]]
