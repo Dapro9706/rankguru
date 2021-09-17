@@ -4,5 +4,5 @@ RG
 Classes
 --------
 
-.. autoclass:: rankguru.core.RG
+.. autoclass:: rankguru.RG
    :members:
