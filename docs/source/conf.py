@@ -1,6 +1,12 @@
 # Configuration file for the Sphinx documentation builder.
 
 # -- Project information
+import sys
+import os
+
+sys.path.insert(0, os.path.abspath('.'))
+sys.path.insert(0, os.path.abspath('..'))
+
 
 project = 'Rankguru'
 copyright = '2021, Swaminath Shiju'
