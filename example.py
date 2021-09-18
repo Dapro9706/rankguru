@@ -1,5 +1,7 @@
-from rankguru import RG, JSON_PROTOCOL
+from rankguru import RG, JSON_PROTOCOL, SimpleBleDevice
 import json
+
+from rankguru import RG
 
 with open ('header.json') as f:
     h = json.load (f)

@@ -6,23 +6,24 @@ from .globals import PLAIN_PY_PROTOCOL, JSON_PROTOCOL, PLACE_HOLDER
 class RG:
     """
     The main API interface for the module
+    
+    Creates new RG object, raises `AuthError` if header is invalid
+    :Parameters:
+        `header` : dict
+            Auth header obtained from rankguru [Required Argument]
+        `protocol` : int
+            The error and return handling protocol of the module 
+
+            ``rankguru.globals.PLAIN_PY_PROTOCOL`` (or 0): Raises errors and gives normal returns
+
+            
+            ``rankguru.globals.JSON_PROTOCOL`` (or 1): returns {'STATUS':'SUCCESS' or 'ERROR', 'PAYLOAD': return value}
+
+            .. note::
+
+                DO NOT debug with ``JSON_PROTOCOL`` it will make your life hell
     """
     def __init__(self, header: dict, protocol=PLAIN_PY_PROTOCOL):
-        """
-        Creates new RG object, raises `AuthError` if header is invalid
-        :Parameters:
-            `header` : dict
-                Auth header obtained from rankguru [Required Argument]
-            `protocol` : int
-                The error and return handling protocol of the module 
-
-                ``rankguru.globals.PLAIN_PY_PROTOCOL`` (or 0): Raises errors and gives normal returns
-                ``rankguru.globals.JSON_PROTOCOL`` (or 1): returns {'STATUS':'SUCCESS' or 'ERROR', 'PAYLOAD': return value}
-
-                .. note::
-
-                    DO NOT debug with ``JSON_PROTOCOL`` it will make your life hell
-        """
 
 
         self.HEADER = header
@@ -39,6 +40,11 @@ class RG:
 
     @handle_protocol
     def get_ans(self, QUESTION_PAPER_ID):
+        """
+        DOC TESTING
+        """
+
+        # TODO: Sort ans b4 sending
         r = self.get_ans_raw (QUESTION_PAPER_ID)
         if self.protocol == JSON_PROTOCOL:
             r = r['PAYLOAD']
@@ -64,6 +70,7 @@ class RG:
 
     @handle_protocol
     def get_tests_raw(self, TEXT_BOOK_ID):
+        # TODO: Optional latest first
         r = make_get_request (self.HEADER, self.NOVA_SERVICE_URL + com (self.TESTS_URL, TEXT_BOOK_ID))
         if r.status_code == 401:
             raise AuthError

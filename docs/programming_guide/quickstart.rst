@@ -30,7 +30,7 @@ This will give a JSON object and then you can copy the object this is now your c
 
 You should get the following output if your header is valid
 
-.. code-block::
+.. code-block:: c
 
     Your header validity is True
 
