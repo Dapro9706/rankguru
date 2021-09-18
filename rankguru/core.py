@@ -34,6 +34,7 @@ class RG:
         :type QUESTION_PAPER_ID: str
 
         :raises QPidError: If QPid is invalid
+        :raises AuthError: If the header is invalid
 
         :return: Returns a sorted dictionary of question number - answer pairs
         :rtype: dict
@@ -59,7 +60,9 @@ class RG:
 
         :param QUESTION_PAPER_ID: The Question Paper Id of the exam
         :type QUESTION_PAPER_ID: str
+
         :raises AuthError: If the header is invalid
+        
         :return: Raw json as python dict
         :rtype: dict
         """
@@ -77,7 +80,9 @@ class RG:
 
         :param TEXT_BOOK_ID: The Textbook Id of the category
         :type TEXT_BOOK_ID: str
+        
         :raises AuthError: If the header is invalid
+        
         :return: Raw json as python dict
         :rtype: dict
         """
@@ -94,11 +99,12 @@ class RG:
 
         :param TEXT_BOOK_ID: The Textbook Id of the exam
         :type TEXT_BOOK_ID: str
-        :param latest_first: Toggle if to get earlier tests first, defaults to True
+        
+        :param latest_first: Toggle it to get earlier tests first, defaults to True
         :type latest_first: bool, optional
         
-
         :raises TBidError: If TBid is invalid
+        :raises AuthError: If the header is invalid
 
         :return: Returns a dictionary of test name - QPid pairs
         :rtype: dict
@@ -110,7 +116,9 @@ class RG:
             raise TBidError
 
         keys = [i for i in [*r.keys ()]]
-        keys.reverse ()
+
+        if latest_first:
+            keys.reverse ()
 
         ret = {}
         for i in keys:

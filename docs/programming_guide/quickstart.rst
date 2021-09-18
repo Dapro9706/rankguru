@@ -35,3 +35,48 @@ You should get the following output if your header is valid
     Your header validity is True
 
 
+Retrieving Tests
+----------------
+
+Now you have a valid auth.
+Go to rankguru.com go to tests and select a category.
+
+The url will be in the form 
+
+https://www.rankguru.com/test/online-test-list?textBookCode=id&&textBookName=name
+
+id -> is the text book id and you can use it to retrieve tests
+
+.. code-block::
+
+   from rankguru import RG
+   import json
+
+   with open('header.json') as f:
+      h=json.load(f)
+   
+   api = RG(h)
+
+   id= #id you got from utl
+
+   print(api.get_tests(id))
+
+
+Retrieving Answers
+------------------
+
+Now from the previous step copy qpid of the necessary test and the run the following snippet
+
+.. code-block::
+
+   from rankguru import RG
+   import json
+
+   with open('header.json') as f:
+      h=json.load(f)
+   
+   api = RG(h)
+
+   qpid= #qpid you got from previous step
+
+   print(api.get_ans(qpid))
