@@ -16,7 +16,8 @@
 
 
 # -- Project information -----------------------------------------------------
-import os,sys
+import os
+import sys
 
 sys.path.insert(1, os.path.abspath('..'))        
 
@@ -57,7 +58,11 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+
+DEBUG = not True
+
+
+html_theme = 'alabaster' if DEBUG else 'sphinx-rtd-theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
