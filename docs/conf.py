@@ -22,6 +22,10 @@ import sys
 sys.path.insert(1, os.path.abspath('..'))        
 
 
+DEBUG = not True
+if not DEBUG:
+    import sphinx_rtd_theme
+
 project = 'rankguru'
 copyright = '2021, Swaminath Shiju'
 author = 'Swaminath Shiju'
@@ -43,6 +47,8 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
 ]
+if not DEBUG:
+    extensions.append('sphinx_rtd_theme')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -58,8 +64,6 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-
-DEBUG = not True
 
 
 html_theme = 'alabaster' if DEBUG else 'sphinx-rtd-theme'
