@@ -75,7 +75,9 @@ else:
     'sphinx.ext.autodoc',
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
-]
+    ]
+
+    exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
     intersphinx_mapping = {
         'python': ('https://docs.python.org/3/', None),
