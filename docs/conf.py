@@ -23,8 +23,6 @@ sys.path.insert(1, os.path.abspath('..'))
 
 
 DEBUG = not True
-if not DEBUG:
-    import sphinx_rtd_theme
 
 project = 'rankguru'
 copyright = '2021, Swaminath Shiju'
@@ -47,8 +45,6 @@ extensions = [
     'sphinx.ext.autosummary',
     'sphinx.ext.intersphinx',
 ]
-if not DEBUG:
-    extensions.append('sphinx_rtd_theme')
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ['_templates']
@@ -66,7 +62,9 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 #
 
 
-html_theme = 'alabaster' if DEBUG else 'sphinx-rtd-theme'
+# html_theme = 'alabaster' if DEBUG else 'sphinx-rtd-theme'
+html_theme = "sphinx_rtd_theme"
+html_theme_path = ["_themes", ]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
