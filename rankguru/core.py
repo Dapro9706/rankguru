@@ -45,14 +45,16 @@ class RG:
         if not r:
             raise QPidError
         r = r['evaluatedData']
+
         ret = {}
 
-        keys = [*r.keys()]
+        for i in r:
+            ret[int (i['questionNo'])] = " ".join ([chr (ord (i) + 48) for i in i['key']])
+
+        keys = [*ret.keys()]
         keys.sort()
 
-        for i in keys:
-            ret[int (i['questionNo'])] = " ".join ([chr (ord (i) + 48) for i in i['key']])
-        return ret
+        return {i:ret[i] for i in keys}
 
     def get_ans_raw(self, QUESTION_PAPER_ID:str):
         """
@@ -115,7 +117,7 @@ class RG:
         if 'STATUS' in r.keys ():
             raise TBidError
 
-        keys = [i for i in [*r.keys ()]]
+        keys = [*r.keys ()]
 
         if latest_first:
             keys.reverse ()
