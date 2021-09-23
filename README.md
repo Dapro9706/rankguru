@@ -27,3 +27,5 @@ For SCTS students
 
 ## Documentation :
 https://rankguru.readthedocs.io/
+
+## If you are not comfortable using CLI, you can checkout https://www.github.com/Redslayer112/Rankguru
