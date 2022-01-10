@@ -16,6 +16,7 @@ Welcome to rankguru's documentation!
    :caption: API Reference
 
    api_reference/rg
+   api_reference/users
    api_reference/errors
 
 

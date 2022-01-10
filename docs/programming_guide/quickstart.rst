@@ -4,7 +4,9 @@ Quickstart
 Retrieving Auth
 ----------------
 
-This Rankguru wrapper relies on the Rankguru Auth which can be accessed by a browser with the following steps
+This Rankguru wrapper relies on the Rankguru Auth which can be accessed by 2 methods
+
+**__1) Browser__**
 
 **Step 1:** Open rankguru in a browser and make sure you are logged in
 
@@ -22,7 +24,7 @@ This will give a JSON object and then you can copy the object this is now your c
 
 .. code-block:: python
 
-   from rankguru.utils import verify_header
+   from rankguru.request_handler import verify_header
    import json
 
    with open('header.json') as f:
@@ -34,6 +36,20 @@ You should get the following output if your header is valid
 
     Your header validity is True
 
+
+**__2) Code__**
+
+This is way easier to use but it logs you out of rankguru in your main pc or app everytime you use
+
+.. code block::python
+
+   from rankguru.utils import get_header
+   from rankguru.request_handler import verify_header
+
+   h = get_header (your scs id, your scs password)
+   print('Your header validity is ' + verify_header(h))
+
+   #ps. its recommended to store header in .json file and running this only in the event of an AuthError
 
 Retrieving Tests
 ----------------

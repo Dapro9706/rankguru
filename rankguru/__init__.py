@@ -2,4 +2,4 @@
 # from .errors import *
 
 from .user import UserAPI
-from .core import RG
+from .tests import RG

@@ -1,7 +1,7 @@
 RG
 ====
 
-.. automodule:: rankguru.core
+.. automodule:: rankguru.tests
 
 
 .. autoclass:: RG

@@ -6,7 +6,7 @@ setup(
   license='MIT',
   description = 'This is a basic Wrapper for Test answer retrieval from https://rankguru.com',
   author = 'Dapro',
-  author_email = '---',
+  author_email = 'swaminathshhiju@gmail.com',
   url = 'https://github.com/Dapro9706/rankguru',
   download_url = 'https://github.com/Dapro9706/rankguru/archive/refs/tags/v1.1.tar.gz',
   keywords = ['Basic'],   # Keywords that define your package best
