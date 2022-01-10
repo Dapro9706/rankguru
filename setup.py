@@ -2,7 +2,7 @@ from distutils.core import setup
 setup(
   name = 'rankguru',
   packages = ['rankguru'],
-  version = '1.1',
+  version = '2',
   license='MIT',
   description = 'This is a basic Wrapper for Test answer retrieval from https://rankguru.com',
   author = 'Dapro',
