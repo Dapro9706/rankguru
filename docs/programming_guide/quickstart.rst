@@ -43,7 +43,7 @@ Go to rankguru.com go to tests and select a category.
 
 The url will be in the form 
 
-https://www.rankguru.com/test/online-test-list?textBookCode=id&&textBookName=name
+https://www.rankguru.com/test/online-test-list?textBookCode=[id]&&textBookName=name
 
 id -> is the text book id and yor can use it to retrieve tests
 
@@ -60,6 +60,8 @@ id -> is the text book id and yor can use it to retrieve tests
    id= #id you got from url
 
    print(api.get_tests(id))
+
+   # ps. If there are many tests with the same name this might not be correct
 
 
 Retrieving Answers

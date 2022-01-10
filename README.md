@@ -25,5 +25,5 @@ For SCTS students
 - Opening your command line
 - Then type `pip install requests`
 
-## Documentation :
+# Documentation :
 https://rankguru.readthedocs.io/
