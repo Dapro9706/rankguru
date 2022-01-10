@@ -1,7 +1,11 @@
 import json
-from rankguru import RG
-
+from rankguru import UserAPI, RG
 
 with open('header.json') as f:
-    API = RG (json.load(f))
-print (API.get_ans ('4bfd0110-318b-11ec-b7c7-2738e5f8eef2'))
+    h = json.load(f)
+    API = UserAPI(h)
+    API_ = RG(h)
+
+print(API.get_data(678522)['studentName'])
+print(API_.get_ans('481614e0-444d-11ec-a9e1-6f563121fe53'))
+

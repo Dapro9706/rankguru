@@ -1,9 +1,10 @@
-from .errors import *
-from .utils import *
+from .AbstractAPI import AbstractAPI
+from .errors import QPidError, TBidError
+from .utils import handle_response
 from .globals import PLACE_HOLDER
 
 
-class RG:
+class RG(AbstractAPI):
     """
     The main API interface for the module
     
@@ -14,16 +15,11 @@ class RG:
 
     """
     def __init__(self, header: dict):
-        self.HEADER = header
-        if not verify_header (self.HEADER):
-            raise AuthError ()
-
-        self.NOVA_SERVICE_URL = f'https://rest.rankguru.com/'
-        self.TESTS_URL = f'tests?textbook={PLACE_HOLDER}'
-
-        self.API_URL = 'https://api.rankguru.com/graphql'
-        self.ANS_QUERY = '{ QuestionEvaluation(input: {questionPaperId: "' + PLACE_HOLDER + '" })' \
-                                                                                            ' { evaluatedData { questionNo  key }  } }'
+        super().__init__(
+            header,            
+            nova = f'https://rest.rankguru.com/tests?textbook={PLACE_HOLDER}',
+            graphql = 'https://api.rankguru.com/graphql'
+        )
 
     def get_ans(self, QUESTION_PAPER_ID:str):
     
@@ -68,13 +64,11 @@ class RG:
         :return: Raw json as python dict
         :rtype: dict
         """
-
-        r = make_post_request (self.HEADER, self.API_URL, com (self.ANS_QUERY, QUESTION_PAPER_ID))
-
-        if r.status_code == 401:
-            raise AuthError
-        else:
-            return r.json ()
+        ANS_QUERY = '{ QuestionEvaluation(input: {questionPaperId: "'+QUESTION_PAPER_ID+'" }) \
+                        { evaluatedData { questionNo  key }  } }'
+        r = self.handler.make ("graphql", data={'query':ANS_QUERY})
+        handle_response(r.status_code)
+        return r.json ()
 
     def get_tests_raw(self, TEXT_BOOK_ID:str):
         """
@@ -89,11 +83,9 @@ class RG:
         :rtype: dict
         """
 
-        r = make_get_request (self.HEADER, self.NOVA_SERVICE_URL + com (self.TESTS_URL, TEXT_BOOK_ID))
-        if r.status_code == 401:
-            raise AuthError
-        else:
-            return r.json ()
+        r = self.handler.make ("nova", replace={PLACE_HOLDER:str(TEXT_BOOK_ID)},mode="get")
+        handle_response(r.status_code)
+        return r.json ()
 
     def get_tests(self, TEXT_BOOK_ID:str, latest_first = True):
         """
